@@ -1,45 +1,36 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
-    span.s1 {font-kerning: none}
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const { createClient } = supabase;
+    const supabase = createClient('https://ziuboebkkhpelglgjdqj.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppdWJvZWJra2hwZWxnbGdqZHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0ODM1OTIsImV4cCI6MjA3NTA1OTU5Mn0.mUQ_zS1faOwps0AtJQdIjDAoVFqbUpX8pFZJP7s9gGE');
+
+    window.onload = async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      const type = urlParams.get('type');
+
+      if (token) {
+        try {
+          const { data, error } = await supabase.auth.getSession(); // Use getSession with token
+          if (!error && data.session) {
+            window.location.href = 'equihealth102://login';
+          } else {
+            console.error('Error getting session:', error);
+            window.location.href = 'https://equihealth.net';
+          }
+        } catch (error) {
+          console.error('Unexpected error:', error);
+          window.location.href = 'https://equihealth.net';
+        }
+      } else {
+        window.location.href = 'https://equihealth.net';
+      }
+    };
+  </script>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const { createClient } = supabase;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const supabase = createClient('https://ziuboebkkhpelglgjdqj.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppdWJvZWJra2hwZWxnbGdqZHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0ODM1OTIsImV4cCI6MjA3NTA1OTU5Mn0.mUQ_zS1faOwps0AtJQdIjDAoVFqbUpX8pFZJP7s9gGE');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>window.onload = async () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const urlParams = new URLSearchParams(window.location.search);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const token = urlParams.get('token');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const type = urlParams.get('type');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (token) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const { data, error } = await supabase.auth.exchangeCodeForSession(token);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!error) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>window.location.href = 'equihealth102://login';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>console.error('Error exchanging token:', error);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>window.location.href = 'https://equihealth.net';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>window.location.href = 'https://equihealth.net';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>};</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;p&gt;Processing your request...&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+  <p>Processing your request...</p>
 </body>
 </html>
